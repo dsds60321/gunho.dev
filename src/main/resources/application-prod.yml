@@ -1,0 +1,69 @@
+spring:
+  datasource:
+    url: jdbc:mariadb://localhost:3306/HOMEPAGE  # 데이터베이스 URL
+    username: root                                  # 데이터베이스 사용자 이름
+    password: 12345
+    driver-class-name: org.mariadb.jdbc.Driver              # MariaDB 드라이버 클래스 이름
+  jpa:
+    hibernate:
+      ddl-auto: update                                      # 데이터베이스 스키마 자동 생성 전략 (none, update, create, create-drop 중 선택)
+    show-sql: true                                          # SQL 쿼리 로그 출력 여부
+    properties:
+      hibernate:
+        format_sql: true
+        use_sql_comments: true
+        dialect: org.hibernate.dialect.MariaDBDialect      # MariaDB Dialect 설정
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: gunho3987@gmail.com
+    password: iwod hbkj dojr udqq
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+  redis:
+    host: localhost
+    password:
+    port: 6379
+    ssl: false
+    timeout: 60000
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  web:
+    resources:
+      add-mappings: true
+      static-locations: classpath:/static/
+  application:
+    name: homepage
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+# JWT
+jwt:
+  secret: bf91149297f98761d4266feb805e1c6f3164bd01fffe0796c746b74041c0a6a4652dc4a8dc1f7ce32e56e5b950efbf818594fee07f76497c52e75c10ae7f8582
+  access-time: 3600 # 1H
+  refresh-time: 604800 # 7D
+
+# api 인증키
+api:
+  dataGo:
+    apt:
+      uri:
+        common: http://openapi.molit.go.kr:8081/OpenAPI_ToolInstallPackage/service/rest/RTMSOBJSvc/getRTMSDataSvcAptTrade
+        detail: http://openapi.molit.go.kr/OpenAPI_ToolInstallPackage/service/rest/RTMSOBJSvc/getRTMSDataSvcAptTradeDev
+      encKey: j%2F3CaVfjPIJEo%2Bo7kgXe8OnQJcGlfGGA6B0UW2S%2BPAHfquCfJqcRGzEh2RJgO%2F5Cdt9H7hEyQyW4TMB3Xxo7mg%3D%3D
+      decKey: j/3CaVfjPIJEo+o7kgXe8OnQJcGlfGGA6B0UW2S+PAHfquCfJqcRGzEh2RJgO/5Cdt9H7hEyQyW4TMB3Xxo7mg==
+  seoul:
+    physical:
+      uri: http://openAPI.seoul.go.kr:8088/%s/%s/ListPublicReservationSport/%s/%s/%s
+      key: 71416f444164736439304165745952
+  gyeonggi:
+    physical:
+      uri: https://openapi.gg.go.kr/%s
+      key: 5d274c376f8e48f599e1bb22989e19bc
+
