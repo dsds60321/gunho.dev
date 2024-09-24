@@ -1,10 +1,10 @@
-import { useMemo } from 'react'
-import { pathConfig } from '@/gh.config'
+import { useMemo } from 'react';
+import { pathConfig } from '@/gh.config';
 
 export default function ServiceModal({ isOpen, toggleModal }) {
-  if (!isOpen) return null
+  const routes = useMemo(() => pathConfig, []);
 
-  const routes = useMemo(() => pathConfig, [])
+  if (!isOpen) return null;
 
   return (
     <>
@@ -48,5 +48,5 @@ export default function ServiceModal({ isOpen, toggleModal }) {
         </button>
       </div>
     </>
-  )
+  );
 }

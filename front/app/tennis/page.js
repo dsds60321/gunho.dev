@@ -133,7 +133,7 @@ export default function Tennis() {
               <TennisCard key={tennis.SVCID} tennis={tennis} />
             ))
           ) : (
-            <Loading message={'검색 결과가 없습니다.'} />
+            <Loading message={'로딩바 개선 요망'} />
           )}
         </Suspense>
       </div>

@@ -1,8 +1,22 @@
-//TODO: 클릭시 페이지 이동으로
+'use client';
+
+import { useRouter } from 'next/navigation';
+import Image from 'next/image';
+
 export default function TennisCard({ tennis }) {
+  const router = useRouter();
+
+  function detailTennis() {
+    localStorage.setItem('tennisData', JSON.stringify(tennis));
+    router.push(`/tennis/${tennis.SVCID}`);
+  }
+
   return (
     <>
-      <div className="bg-white rounded-lg shadow-md p-4 m-2 cursor-pointer">
+      <div
+        className="bg-white rounded-lg shadow-md p-4 m-2 cursor-pointer"
+        onClick={detailTennis}
+      >
         <img
           src={tennis.IMGURL}
           alt={tennis.SVCNM}
