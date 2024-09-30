@@ -27,6 +27,7 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.io.IOException;
+import java.util.List;
 
 @Configuration
 @EnableWebSecurity
@@ -46,7 +47,7 @@ public class WebSecurityConfig implements WebMvcConfigurer {
                 .sessionManagement(sessionManagement -> sessionManagement
                         .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED))
                 .authorizeHttpRequests(request -> request
-                        .requestMatchers("/", "/error", "/index.html", "/auth/**", "/auth/sign-up", "/assets/**", "favicon.ico").permitAll()
+                        .requestMatchers("/tennis", "/", "/error", "/index.html", "/auth/**", "/auth/sign-up", "/assets/**", "favicon.ico").permitAll()
                         .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                         .anyRequest().permitAll())
                 .exceptionHandling(exceptionHandling ->
@@ -61,6 +62,7 @@ public class WebSecurityConfig implements WebMvcConfigurer {
     protected CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration corsConfiguration = new CorsConfiguration();
         corsConfiguration.addAllowedMethod("OPTIONS");
+        corsConfiguration.setAllowedOrigins(List.of("http://localhost:3000"));
         corsConfiguration.addAllowedMethod("*");
         corsConfiguration.addAllowedHeader("*");
         corsConfiguration.setAllowCredentials(true);

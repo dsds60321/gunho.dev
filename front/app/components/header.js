@@ -1,22 +1,21 @@
-'use client'
+'use client';
 
-import Image from 'next/image'
-import HeaderDropDown from '@/app/components/header-dropdown'
-import { useState } from 'react'
-import ServiceModal from '@/app/components/service-modal'
+import HeaderDropDown from '@/app/components/header-dropdown';
+import { useState } from 'react';
+import ServiceModal from '@/app/components/service-modal';
 
 const Header = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const toggleModal = () => {
-    setIsModalOpen(!isModalOpen)
-  }
+    setIsModalOpen(!isModalOpen);
+  };
 
   return (
     <header className="flex justify-between items-center p-4 bg-white shadow">
       <div className="flex items-center">
         <a href="/" className="cursor-pointer">
-          <Image
+          <img
             src="/images/home.png"
             alt="Logo"
             className="h-10 mr-4"
@@ -51,7 +50,7 @@ const Header = () => {
 
       <ServiceModal isOpen={isModalOpen} toggleModal={toggleModal} />
     </header>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;

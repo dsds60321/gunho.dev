@@ -81,6 +81,19 @@ tasks.named('test') {
     useJUnitPlatform()
 }
 
+tasks.register('npmExport') {
+    doLast {
+        exec {
+            workingDir 'front' // front 폴더로 작업 디렉토리 설정
+            commandLine 'npm', 'run', 'export' // npm export 명령어 실행
+        }
+    }
+}
+
+tasks.named('build') {
+    finalizedBy 'npmExport' // build 태스크가 완료된 후 npmExport 태스크 실행
+}
+
 jar {
     enabled = false
 }

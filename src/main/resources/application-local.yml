@@ -31,12 +31,11 @@ spring:
     ssl: false
     timeout: 60000
   mvc:
-    pathmatch:
-      matching-strategy: ant_path_matcher
+    static-path-pattern: /**
   web:
     resources:
       add-mappings: true
-      static-locations: classpath:/static/
+      static-locations: classpath:/static/**
   application:
     name: homepage
     multipart:

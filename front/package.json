@@ -6,6 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "export": "rm -rf ../src/main/resources/static/* next build && cp -r out/ ../src/main/resources/static",
     "lint": "eslint .",
     "format": "prettier --write ."
   },
