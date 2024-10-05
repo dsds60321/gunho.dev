@@ -1,16 +1,16 @@
-import axios from 'axios'
+import axios from 'axios';
 
 const axiosInstance = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
+  baseURL: process.env.NEXT_PUBLIC_API_URL,
   timeout: 10000,
   headers: {
     'Content-Type': 'application/json;utf-8'
   }
-})
+});
 export const Post = async (url, data, config = {}) => {
-  return await axiosInstance.post(url, data, { ...config })
-}
+  return await axiosInstance.post(url, data, { ...config });
+};
 
 export const Get = async (url, config = {}) => {
-  return await axiosInstance.get(url, { ...config })
-}
+  return await axiosInstance.get(url, { ...config });
+};

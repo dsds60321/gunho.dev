@@ -3,9 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 8080",
+    "prod": "next dev -p 8080",
     "build": "next build",
-    "start": "next start",
+    "start": "next start -p 8080",
     "export": "rm -rf ../src/main/resources/static/* next build && cp -r out/ ../src/main/resources/static",
     "lint": "eslint .",
     "format": "prettier --write ."

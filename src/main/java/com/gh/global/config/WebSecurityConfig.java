@@ -47,7 +47,7 @@ public class WebSecurityConfig implements WebMvcConfigurer {
                 .sessionManagement(sessionManagement -> sessionManagement
                         .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED))
                 .authorizeHttpRequests(request -> request
-                        .requestMatchers("/tennis", "/", "/error", "/index.html", "/auth/**", "/auth/sign-up", "/assets/**", "favicon.ico").permitAll()
+                        .requestMatchers("/tennis", "/", "/error", "/index.html", "/auth/**", "/auth/sign-up", "/assets/**", "/api/**","favicon.ico").permitAll()
                         .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                         .anyRequest().permitAll())
                 .exceptionHandling(exceptionHandling ->
@@ -62,7 +62,7 @@ public class WebSecurityConfig implements WebMvcConfigurer {
     protected CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration corsConfiguration = new CorsConfiguration();
         corsConfiguration.addAllowedMethod("OPTIONS");
-        corsConfiguration.setAllowedOrigins(List.of("http://localhost:3000"));
+        corsConfiguration.setAllowedOrigins(List.of("http://localhost:8000", "https://www.gunho.dev"));
         corsConfiguration.addAllowedMethod("*");
         corsConfiguration.addAllowedHeader("*");
         corsConfiguration.setAllowCredentials(true);

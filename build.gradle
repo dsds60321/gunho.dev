@@ -81,18 +81,26 @@ tasks.named('test') {
     useJUnitPlatform()
 }
 
-tasks.register('npmExport') {
+tasks.register('npmRun') {
     doLast {
+        // Next.js 빌드
         exec {
-            workingDir 'front'
-            commandLine 'npm', 'run', 'export'
+            workingDir 'front' // Next.js 프로젝트 경로
+            commandLine 'npm', 'run', 'build'
+            ignoreExitValue = true
+        }
+
+        // Next.js 서버 시작
+        exec {
+            workingDir 'front' // Next.js 프로젝트 경로
+            commandLine 'npm', 'start'
             ignoreExitValue = true
         }
     }
 }
 
 tasks.named('build') {
-    finalizedBy 'npmExport' // build 태스크가 완료된 후 npmExport 태스크 실행
+    finalizedBy 'npmRun' // build 태스크가 완료된 후 npmRun 태스크 실행
 }
 
 jar {
