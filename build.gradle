@@ -90,12 +90,14 @@ tasks.register('npmRun') {
             ignoreExitValue = true
         }
 
-        // Next.js 서버 시작
-        exec {
-            workingDir 'front' // Next.js 프로젝트 경로
-            commandLine 'npm', 'start'
-            ignoreExitValue = true
-        }
+        // Next.js 서버 시작 (비동기 실행)
+        def process = new ProcessBuilder('npm', 'start')
+                .directory(new File('front')) // Next.js 프로젝트 경로
+                .inheritIO() // 표준 입력/출력을 Gradle 콘솔과 연결
+                .start()
+
+        // 프로세스 ID를 저장하거나 다른 로직을 추가할 수 있습니다.
+        // 예: println "Next.js server started with PID: ${process.pid()}"
     }
 }
 
