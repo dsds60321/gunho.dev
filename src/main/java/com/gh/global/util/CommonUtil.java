@@ -10,10 +10,10 @@ public class CommonUtil {
     /**
      * 브라우저 캐시
      * @param response
-     * @param ms
+     * @param seconds
      */
-    public static void setCache(HttpServletResponse response, int ms) {
-        response.setHeader("Cache-Control", String.format(CACHE_VALUE, String.valueOf(ms)));
+    public static void setCache(HttpServletResponse response, int seconds) {
+        response.setHeader("Cache-Control", String.format(CACHE_VALUE, String.valueOf(seconds)));
     }
 
     public static String randomUUid(int length) {

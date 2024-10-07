@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 public class SeoulPhysicalFacade {
 
     @Value("${api.seoul.physical.uri}")
-    private String uri;
+    private String url;
 
     @Value("${api.seoul.physical.key}")
     private String key;
@@ -36,6 +36,12 @@ public class SeoulPhysicalFacade {
         return getReservationList("json", min, max, classNm, clazz);
     }
 
+    // 단건 조회
+    public <T> T getReservation(String classNm, String parameter ,Class<T> clazz) {
+        String reqUrl = String.format(url, key, "json", 0, 1, classNm) + parameter;
+        return webClientUtil.getRequest(reqUrl, clazz);
+    }
+
     public <T> T getReservationList(String type, int min, int max, String classNm, Class<T> clazz) {
 
         if ( min > max) {
@@ -53,9 +59,10 @@ public class SeoulPhysicalFacade {
             return null;
         }
 
-        uri = String.format(this.uri, key, type, min, max, classNm);
+        String reqUrl = String.format(this.url, key, type, min, max, classNm);
 
-        return webClientUtil.getRequest(uri, clazz);
+        return webClientUtil.getRequest(reqUrl, clazz);
     }
+
 
 }

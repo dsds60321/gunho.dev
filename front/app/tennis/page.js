@@ -1,7 +1,7 @@
 'use client';
 
 import TennisCard from '@/app/components/tennis/card';
-import { getTennis } from '@/app/actions/tennis';
+import { getList } from '@/app/actions/tennis';
 import { Suspense, useEffect, useState } from 'react';
 import Loading from '@/app/components/loading';
 import { IoFilterOutline } from 'react-icons/io5';
@@ -12,7 +12,7 @@ export default function Tennis() {
 
   useEffect(() => {
     const fetchTennisData = async () => {
-      const { data } = await getTennis();
+      const { data } = await getList();
       setTennisDatas(data.result);
       setFilterDatas(data.result);
     };

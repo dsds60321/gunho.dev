@@ -17,7 +17,7 @@ public class SeoulTennisResDto {
 
     @Getter
     @NoArgsConstructor
-    static class ListPublicReservationSport {
+    public static class ListPublicReservationSport {
 
         @JsonProperty("list_total_count")
         private int listTotalCount;

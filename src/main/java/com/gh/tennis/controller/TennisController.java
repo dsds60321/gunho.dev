@@ -10,10 +10,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -37,8 +34,14 @@ public class TennisController {
             return ApiResponse.NOT_FOUND("예약 목록이 없습니다.");
         }
 
-        CommonUtil.setCache(response, 60);
+        CommonUtil.setCache(response, 300);
         return ApiResponse.SUCCESS(reservationList.getRows(true));
+    }
+
+    // 테니스 예약 서비스 아이디별 조회
+    @GetMapping("/{svcId}")
+    public ResponseEntity<ApiResponse> deatil(@PathVariable String svcId) {
+        return ApiResponse.SUCCESS(tennisService.getDeatilByServiceId(svcId).getRows(true));
     }
 
     // 예약 현황 조회
